@@ -1,10 +1,10 @@
 package com.design.patterns.abstract_factory_ecommerce.domains;
 
-import com.design.patterns.abstract_factory_ecommerce.domains.abstract_factory.AbstractFactory;
+import com.design.patterns.abstract_factory_ecommerce.domains.abstract_factory.AbstractFactoryProduct;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLFactory implements AbstractFactory {
+public class MySQLFactory implements AbstractFactoryProduct {
     private List<Product> productos = new ArrayList<>();
 
     @Override
