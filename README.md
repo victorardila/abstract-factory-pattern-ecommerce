@@ -1,6 +1,15 @@
-# abstract-factory-pattern-ecommerce
+# Patron creacional Factoria Abstracta
+
+### Problema
 
 ![abstract-factory-e-commerce](https://github.com/user-attachments/assets/b0f4f501-9223-49ff-a350-6bde9b073429)
+
+### Diagrama de clases
+
+![Class_Diagram](https://github.com/user-attachments/assets/b4dfc0bb-2aaf-475c-97fa-7649abb76de1)
+
+### Insomnia
+
 ![Insomnia](https://github.com/user-attachments/assets/82557c89-076b-4ade-9a14-aced60914274)
 
 ## URI De la aplicacion
