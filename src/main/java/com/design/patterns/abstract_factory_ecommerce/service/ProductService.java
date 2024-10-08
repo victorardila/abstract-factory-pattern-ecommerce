@@ -1,39 +1,62 @@
 package com.design.patterns.abstract_factory_ecommerce.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.design.patterns.abstract_factory_ecommerce.domains.Product;
 import org.springframework.stereotype.Service;
 
-import com.design.patterns.abstract_factory_ecommerce.domains.Product;
-import com.design.patterns.abstract_factory_ecommerce.repositories.ProductDAO;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ProductService {
-    private final ProductDAO productDAO;
 
-    @Autowired
-    public ProductService(ProductDAO productDAO) {
-        this.productDAO = productDAO;
+    // Simulamos las "bases de datos" con listas en memoria
+    private List<Product> productosMySQL = new ArrayList<>();
+    private List<Product> productosOracle = new ArrayList<>();
+    private String currentDB;
+
+    // Configurar la base de datos (simulada)
+    public void configureDB(String dbType) {
+        if (dbType.equalsIgnoreCase("MySQL")) {
+            currentDB = "MySQL";
+        } else if (dbType.equalsIgnoreCase("Oracle")) {
+            currentDB = "Oracle";
+        } else {
+            throw new IllegalArgumentException("Tipo de base de datos no soportado: " + dbType);
+        }
     }
 
-    public void agregarProducto(Product producto) {
-        // Llama a la capa de acceso a datos para agregar un nuevo producto
-        productDAO.agregarProducto(producto);
-    }
-
+    // Obtener productos según la base de datos configurada
     public List<Product> obtenerProductos() {
-        // Llama a la capa de acceso a datos para obtener los productos
-        return productDAO.obtenerProductos();
+        if (currentDB == null) {
+            throw new IllegalStateException("Base de datos no configurada.");
+        }
+
+        if (currentDB.equals("MySQL")) {
+            return productosMySQL;
+        } else if (currentDB.equals("Oracle")) {
+            return productosOracle;
+        } else {
+            throw new IllegalStateException("Base de datos desconocida.");
+        }
     }
 
-    public Product actualizarProducto(Long id, Product producto) {
-        // Llama a la capa de acceso a datos para actualizar un producto
-        return productDAO.actualizarProducto(id, producto);
+    // Agregar producto según la base de datos configurada
+    public void agregarProducto(Product producto) {
+        if (currentDB == null) {
+            throw new IllegalStateException("Base de datos no configurada.");
+        }
+
+        if (currentDB.equals("MySQL")) {
+            productosMySQL.add(producto);
+        } else if (currentDB.equals("Oracle")) {
+            productosOracle.add(producto);
+        } else {
+            throw new IllegalStateException("Base de datos desconocida.");
+        }
     }
 
-    public void eliminarProducto(Long id) {
-        // Llama a la capa de acceso a datos para eliminar un producto
-        productDAO.eliminarProducto(id);
+    // Obtener la base de datos actual
+    public String getCurrentDB() {
+        return currentDB;
     }
 }
