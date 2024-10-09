@@ -55,9 +55,9 @@ http://localhost:8080/api/productos
 ```bash
 # POST JSON BODY
 {
-    "name": "Laptop",
-    "description": "Intel Core 9, SSD 1024GB, 32 RAM",
-    "price": 5600000.00
+    "nombre": "Laptop",
+    "descripcion": "Intel Core 9, SSD 1024GB, 32 RAM",
+    "precio": 5600000.00
 }
 ```
 
